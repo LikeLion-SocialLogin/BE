@@ -44,11 +44,26 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'rest_framework',
     'auths',
+    # simple-jwt 추가해주기 
+    'rest_framework_simplejwt',
+    # cors 헤더 추가
+    'corsheaders',
 ]
 
+AUTH_USER_MODEL = "auths.MutsaUser"
+
+REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+ 
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,6 +93,37 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
+
+CORS_ORIGIN_ALLOW_ALL = True # <- 모든 호스트 허용
+
+# or 
+
+# CORS_ORIGIN_WHITELIST = (
+#     "https://example.com",
+#     "https://sub.example.com",
+#     "http://localhost:8080",
+#     "http://127.0.0.1:9000"
+# )
+
+#HTTP methods 추가
+CORS_ALLOW_METHODS = (
+"DELETE",
+"GET",
+"OPTIONS",
+"PATCH",
+"POST",
+"PUT",
+)
+
+#원하는 헤더 추가
+CORS_ALLOW_HEADERS = (
+"accept",
+"Authorization",
+"content-type",
+"user-agent",
+"x-csrftoken",
+"x-requested-with",
+)
 
 
 # Database
