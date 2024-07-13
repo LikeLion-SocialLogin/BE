@@ -14,14 +14,10 @@ from datetime import timedelta
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-
-# .env 파일 위치 설정
-dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
-load_dotenv(dotenv_path)
-
+load_dotenv()
 
 # 시크릿 키 설정
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -218,3 +214,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'auths.Member'  # settings.py에서 우리가 만든 유저인 Member을 사용하도록.
