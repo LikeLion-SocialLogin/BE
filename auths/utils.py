@@ -18,6 +18,7 @@ def exchange_kakao_access_token(access_code):
         data={
             'grant_type': 'authorization_code',
             'client_id': os.environ.get('KAKAO_REST_API_KEY'),
+            'client_secret': os.environ.get('CLIENT_SECRET'),
             'redirect_uri': os.environ.get('KAKAO_REDIRECT_URI'),
             'code': access_code,
         },

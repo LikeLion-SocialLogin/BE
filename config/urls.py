@@ -16,13 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from auths.views import kakao_login, kakao_signup
-
+from auths.views import kakao_login, kakao_signup, example_view, profile
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('login/', kakao_login),
-    path('/signup', kakao_signup),
-    # path('/profile', detail),
-    # path('/profile', modify),
+    path('signup/', kakao_signup),
+    path('example/', example_view),
+    path('profile/', profile),
 ]
